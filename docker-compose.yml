@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  iiht_pmspringboot_service:
+    image: iiht_pmspringboot_service
+    build: .
+    ports:
+      - 3000:3000
