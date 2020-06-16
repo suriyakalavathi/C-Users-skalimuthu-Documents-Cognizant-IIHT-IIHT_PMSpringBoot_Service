@@ -86,7 +86,4 @@ public class Project {
 
     @Column(name = "priority")
     private int priority;
-    
-    @Column(name = "task_count", nullable = false)
-    private Date taskcount;
 }
