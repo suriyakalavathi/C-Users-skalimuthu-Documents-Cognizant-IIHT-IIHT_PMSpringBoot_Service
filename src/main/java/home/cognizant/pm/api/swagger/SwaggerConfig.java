@@ -23,8 +23,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("REST API")
-                .description("REST API")
-                .contact(new Contact("Suriya Kalimuthu", "www.cognizant.projectmanager", "suriyakalavathi@gmail.com"))
+                .description("References")
+                .contact(new Contact("Program Manager", "http://localhost:4200/projectmanager", "suriyakalavathi.kalimuthu@cognizant.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0-SNAPSHOT")

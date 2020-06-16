@@ -59,8 +59,8 @@ public class UserControllerTest {
         assertThat("userMapper is NOT injected", userMapper, is(notNullValue()));
         assertThat("userService is NOT injected", userService, is(notNullValue()));
 
-        user = new User(1, 1, "Test", "User");
-        userResponse = new UserResponse(1, 1, "Test", "User");
+        user = new User(1, 1, "Demo", "User");
+        userResponse = new UserResponse(1, 1, "Demo", "User");
         users = Stream.of(user).collect(Collectors.toSet());
         userResponses = Arrays.asList(new UserResponse[]{userResponse});
     }
