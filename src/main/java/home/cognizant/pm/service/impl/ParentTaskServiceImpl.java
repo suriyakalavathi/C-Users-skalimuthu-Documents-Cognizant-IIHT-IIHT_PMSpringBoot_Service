@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import home.cognizant.pm.service.api.ParestTaskService;
-import home.cognizant.pm.service.entity.ParentTaskObject;
+import home.cognizant.pm.service.entity.ParentTask;
 import home.cognizant.pm.service.repository.ParentTaskRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,12 +21,12 @@ public class ParentTaskServiceImpl implements ParestTaskService {
     ParentTaskRepository parentTaskRepository;
 
     @Override
-    public ParentTaskObject add(ParentTaskObject parentTask) {       
+    public ParentTask add(ParentTask parentTask) {       
         return parentTaskRepository.save(parentTask);
     }
 
     @Override
-    public ParentTaskObject edit(ParentTaskObject parentTask) {      
+    public ParentTask edit(ParentTask parentTask) {      
         return parentTaskRepository.save(parentTask);    }
 
     @Override
@@ -35,12 +35,12 @@ public class ParentTaskServiceImpl implements ParestTaskService {
     }
 
     @Override
-    public ParentTaskObject get(long parentTaskId) {      
+    public ParentTask get(long parentTaskId) {      
         return parentTaskRepository.findById(parentTaskId).orElse(null);
     }
 
     @Override
-    public List<ParentTaskObject> getAll() {
+    public List<ParentTask> getAll() {
               return parentTaskRepository.findAll();
     }
 

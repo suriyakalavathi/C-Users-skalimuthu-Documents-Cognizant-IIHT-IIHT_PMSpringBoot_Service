@@ -2,7 +2,7 @@ package home.cognizant.pm.api.mapper;
 
 import home.cognizant.pm.api.model.ProjectRequest;
 import home.cognizant.pm.api.model.ProjectResponse;
-import home.cognizant.pm.service.entity.ProjectObject;
+import home.cognizant.pm.service.entity.Project;
 
 import org.mapstruct.Mapper;
 
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProjectMapper {
-    ProjectObject toProject(ProjectRequest projectRequest);
+    Project toProject(ProjectRequest projectRequest);
 
-    ProjectResponse toProjectResponse(ProjectObject project);
+    ProjectResponse toProjectResponse(Project project);
 
-    List<ProjectResponse> toProjectResponse(List<ProjectObject> projects);
+    List<ProjectResponse> toProjectResponse(List<Project> projects);
 }

@@ -16,7 +16,7 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<name>service</name>
-	<description>API/Service for Project Manager</description>
+	<description>API/Project Manager Service</description>
 
 	<properties>
 		<java.version>1.8</java.version>

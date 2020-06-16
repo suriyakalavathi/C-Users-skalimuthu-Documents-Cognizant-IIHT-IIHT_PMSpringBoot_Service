@@ -6,13 +6,13 @@ import org.mapstruct.Mapper;
 
 import home.cognizant.pm.api.model.ParentTaskRequest;
 import home.cognizant.pm.api.model.ParentTaskResponse;
-import home.cognizant.pm.service.entity.ParentTaskObject;
+import home.cognizant.pm.service.entity.ParentTask;
 
 @Mapper(componentModel = "spring")
 public interface ParentTaskMapper {
-    ParentTaskObject toParentTask(ParentTaskRequest parentTaskRequest);
+    ParentTask toParentTask(ParentTaskRequest parentTaskRequest);
 
-    ParentTaskResponse toParentTaskResponse(ParentTaskObject parentTask);
+    ParentTaskResponse toParentTaskResponse(ParentTask parentTask);
 
-    List<ParentTaskResponse> toParentTaskResponse(List<ParentTaskObject> parentTasks);
+    List<ParentTaskResponse> toParentTaskResponse(List<ParentTask> parentTasks);
 }

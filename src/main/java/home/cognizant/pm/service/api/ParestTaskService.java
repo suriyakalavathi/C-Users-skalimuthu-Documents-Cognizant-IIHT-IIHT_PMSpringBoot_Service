@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.mapstruct.Named;
 
-import home.cognizant.pm.service.entity.ParentTaskObject;
+import home.cognizant.pm.service.entity.ParentTask;
 
 @Named("ParentTaskService")
 public interface ParestTaskService {
-    public ParentTaskObject add(ParentTaskObject parentTask);
+    public ParentTask add(ParentTask parentTask);
 
-    public ParentTaskObject edit(ParentTaskObject parentTask);
+    public ParentTask edit(ParentTask parentTask);
 
     public void delete(long parentTaskId);
 
     @Named("findParentTaskById")
-    public ParentTaskObject get(long parentTaskId);
+    public ParentTask get(long parentTaskId);
 
-    public List<ParentTaskObject> getAll();
+    public List<ParentTask> getAll();
 }

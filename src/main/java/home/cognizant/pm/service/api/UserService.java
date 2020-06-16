@@ -3,20 +3,20 @@ package home.cognizant.pm.service.api;
 import java.util.List;
 import java.util.Set;
 
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.User;
 
 public interface UserService {
-    public UserObject add(UserObject user);
+    public User add(User user);
 
-    public List<UserObject> edit(UserObject user);
+    public List<User> edit(User user);
 
     public void delete(long userId);
 
-    public UserObject get(long userId);
+    public User get(long userId);
 
-    public Set<UserObject> getManagers(long projectId);
+    public Set<User> getManagers(long projectId);
 
-    public Set<UserObject> getAllWithUniqueEmployeeId();
+    public Set<User> getAllWithUniqueEmployeeId();
 
-    public List<UserObject> getAll();
+    public List<User> getAll();
 }

@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.User;
 import home.cognizant.pm.service.repository.UserRepository;
 
 import java.util.Set;
@@ -53,7 +53,7 @@ public class UserRepositoryTest {
     @Test
     @DisplayName("UserRepository - Find USERs with Unique Employee Id")
     public void testFindUsersWithUniqueEmployeeId() {
-        Set<UserObject> actualUsers = userRepository.findUsersWithUniqueEmployeeId();
+        Set<User> actualUsers = userRepository.findUsersWithUniqueEmployeeId();
         assertThat("Check data.sql", actualUsers.size(), equalTo(9));
     }
 }

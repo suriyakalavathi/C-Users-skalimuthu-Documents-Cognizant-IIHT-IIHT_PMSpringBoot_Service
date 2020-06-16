@@ -2,16 +2,16 @@ package home.cognizant.pm.service.api;
 
 import java.util.Set;
 
-import home.cognizant.pm.service.entity.TaskObject;
+import home.cognizant.pm.service.entity.Task;
 
 public interface TaskService {
-    public TaskObject add(TaskObject task);
+    public Task add(Task task);
 
-    public TaskObject edit(TaskObject task);
+    public Task edit(Task task);
 
     public void delete(long taskId);
 
-    public TaskObject get(long projectId, long taskId);
+    public Task get(long projectId, long taskId);
 
-    public Set<TaskObject> getAll(long projectId);
+    public Set<Task> getAll(long projectId);
 }

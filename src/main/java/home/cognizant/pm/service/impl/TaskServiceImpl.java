@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import home.cognizant.pm.api.exception.TaskException;
 import home.cognizant.pm.service.api.TaskService;
-import home.cognizant.pm.service.entity.TaskObject;
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.Task;
+import home.cognizant.pm.service.entity.User;
 import home.cognizant.pm.service.repository.TaskRepository;
 import home.cognizant.pm.service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -29,32 +29,32 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     UserRepository userRepository;
 
-    private void linkTaskToUser(TaskObject task, TaskObject persistedTask) {
+    private void linkTaskToUser(Task task, Task persistedTask) {
         if (task.getUserId() == 0) {
             return;
         }
-        UserObject user = userRepository.findById(task.getUserId()).get();
+        User user = userRepository.findById(task.getUserId()).get();
         if (user.getTask() == null) {
             user.setTask(persistedTask);
         } else {
             // Clone the User to create a new user entry
-     //       user = user.withTask(persistedTask);
-            user.setUserId(0);
-            user.setProject(null);
+           user.setTask(task);
+       //    user.setUserId(task.getUserId());
+            //user.setProject(task.getProject());
         }
         userRepository.save(user);
     }
 
-    private void unlinkTaskFromUser(UserObject currentUser)  {
+    private void unlinkTaskFromUser(User currentUser)  {
     //    log.debug("Unlinking the current user {} from Task {}", currentUser.getUserId(), currentUser.getTask());
         currentUser.setTask(null);
         userRepository.save(currentUser);
     }
 
     @Override
-    public TaskObject add(TaskObject task) {
+    public Task add(Task task) {
      //   log.debug("Adding a task... {}, and to user {}", task, task.getUserId());
-        TaskObject persistedTask = taskRepository.save(task);
+        Task persistedTask = taskRepository.save(task);
 
         linkTaskToUser(task, persistedTask);
 
@@ -62,13 +62,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskObject edit(TaskObject task) {
+    public Task edit(Task task) {
        
-        TaskObject persistedTask = taskRepository.save(task);
+        Task persistedTask = taskRepository.save(task);
 
-        List<Optional<UserObject>> optionalUser = userRepository.findUsersByTask_TaskId(persistedTask.getTaskId());
+        List<Optional<User>> optionalUser = userRepository.findUsersByTask_TaskId(persistedTask.getTaskId());
         if (!optionalUser.isEmpty()) {
-            UserObject currentUser = optionalUser.get(0).get();
+            User currentUser = optionalUser.get(0).get();
             if (currentUser.getUserId() != task.getUserId()) {
                 unlinkTaskFromUser(currentUser);
                 linkTaskToUser(task, persistedTask);
@@ -81,24 +81,24 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void delete(long taskId) {      
 
-        List<Optional<UserObject>> optionalUser = userRepository.findUsersByTask_TaskId(taskId);
+        List<Optional<User>> optionalUser = userRepository.findUsersByTask_TaskId(taskId);
         if (!optionalUser.isEmpty()) {
-            UserObject currentUser = userRepository.findUsersByTask_TaskId(taskId).get(0).get();
+            User currentUser = userRepository.findUsersByTask_TaskId(taskId).get(0).get();
             unlinkTaskFromUser(currentUser);
         }
         taskRepository.deleteById(taskId);
     }
 
     @Override
-    public TaskObject get(long projectId, long taskId) {      
+    public Task get(long projectId, long taskId) {      
         return taskRepository.findTaskByProject_ProjectIdAndTaskId(projectId, taskId).orElseThrow(() -> new TaskException(String.format("Task not found for TaskID \"%s\"", taskId)));
     }
 
     @Override
-    public Set<TaskObject> getAll(long projectId) {
-        Set<TaskObject> tasks = taskRepository.findTasksByProject_ProjectId(projectId);
+    public Set<Task> getAll(long projectId) {
+        Set<Task> tasks = taskRepository.findTasksByProject_ProjectId(projectId);
         return tasks.stream().map(t -> {
-            List<Optional<UserObject>> optionalUser = userRepository.findUsersByTask_TaskId(t.getTaskId());
+            List<Optional<User>> optionalUser = userRepository.findUsersByTask_TaskId(t.getTaskId());
             if (!optionalUser.isEmpty()) {
                 t.setUserId(optionalUser.get(0).get().getUserId());
             }

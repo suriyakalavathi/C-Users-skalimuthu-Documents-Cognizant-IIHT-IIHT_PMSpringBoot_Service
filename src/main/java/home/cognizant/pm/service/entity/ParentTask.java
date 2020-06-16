@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(schema = "pm", name = "parent_task")
 @Data @NoArgsConstructor @AllArgsConstructor
-public class ParentTaskObject {
+public class ParentTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

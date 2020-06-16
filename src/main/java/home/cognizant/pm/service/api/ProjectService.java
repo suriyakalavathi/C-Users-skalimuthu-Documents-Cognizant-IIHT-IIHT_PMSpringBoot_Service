@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.mapstruct.Named;
 
-import home.cognizant.pm.service.entity.ProjectObject;
+import home.cognizant.pm.service.entity.Project;
 
 @Named("ProjectService")
 public interface ProjectService {
-    public ProjectObject add(ProjectObject project);
+    public Project add(Project project);
 
-    public ProjectObject edit(ProjectObject project);
+    public Project edit(Project project);
 
     public void delete(long projectId);
 
     @Named("findProjectById")
-    public ProjectObject get(long projectId);
+    public Project get(long projectId);
 
-    public List<ProjectObject> getAll();
+    public List<Project> getAll();
 }

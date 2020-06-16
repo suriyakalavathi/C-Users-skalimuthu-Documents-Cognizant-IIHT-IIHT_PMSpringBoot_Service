@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(schema = "pm", name = "task")
 @Data @NoArgsConstructor @AllArgsConstructor
-public class TaskObject {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,19 +43,19 @@ public class TaskObject {
 		this.userId = userId;
 	}
 
-	public ParentTaskObject getParentTask() {
+	public ParentTask getParentTask() {
 		return parentTask;
 	}
 
-	public void setParentTask(ParentTaskObject parentTask) {
+	public void setParentTask(ParentTask parentTask) {
 		this.parentTask = parentTask;
 	}
 
-	public ProjectObject getProject() {
+	public Project getProject() {
 		return project;
 	}
 
-	public void setProject(ProjectObject project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 
@@ -104,11 +104,11 @@ public class TaskObject {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_task_id")
-    private ParentTaskObject parentTask;
+    private ParentTask parentTask;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", nullable = false)
-    private ProjectObject project;
+    private Project project;
 
     @Column(name = "name", nullable = false)
     private String name;

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(schema = "pm", name = "project")
 @Data @NoArgsConstructor @AllArgsConstructor
-public class ProjectObject {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

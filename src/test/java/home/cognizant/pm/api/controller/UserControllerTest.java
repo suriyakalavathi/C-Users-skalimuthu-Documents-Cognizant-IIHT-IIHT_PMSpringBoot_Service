@@ -3,7 +3,7 @@ package home.cognizant.pm.api.controller;
 import home.cognizant.pm.api.mapper.UserMapper;
 import home.cognizant.pm.api.model.UserResponse;
 import home.cognizant.pm.service.api.UserService;
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +48,9 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static UserObject user;
+    private static User user;
     private static UserResponse userResponse;
-    private static Set<UserObject> users;
+    private static Set<User> users;
     private static List<UserResponse> userResponses;
 
     @BeforeAll
@@ -59,7 +59,7 @@ public class UserControllerTest {
         assertThat("userMapper is NOT injected", userMapper, is(notNullValue()));
         assertThat("userService is NOT injected", userService, is(notNullValue()));
 
-        user = new UserObject(1, 1, "Test", "User");
+        user = new User(1, 1, "Test", "User");
         userResponse = new UserResponse(1, 1, "Test", "User");
         users = Stream.of(user).collect(Collectors.toSet());
         userResponses = Arrays.asList(new UserResponse[]{userResponse});

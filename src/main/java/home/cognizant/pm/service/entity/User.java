@@ -21,7 +21,7 @@ import lombok.With;
 @Entity
 @Table(schema = "pm", name = "user")
 @Data @NoArgsConstructor @AllArgsConstructor
-public class UserObject {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,10 @@ public class UserObject {
     @Column(name = "employee_id", nullable = false, unique = true)
     private long employeeId;
 
-    public UserObject() {		
+    public User() {		
 	}
     
-   	public UserObject(int i, int j, String fname, String lname) {
+   	public User(int i, int j, String fname, String lname) {
 		this.userId=i;
 		this.employeeId=j;
 		this.firstName=fname;
@@ -73,19 +73,19 @@ public class UserObject {
 		this.lastName = lastName;
 	}
 
-	public ProjectObject getProject() {
+	public Project getProject() {
 		return project;
 	}
 
-	public void setProject(ProjectObject project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 
-	public TaskObject getTask() {
+	public Task getTask() {
 		return task;
 	}
 
-	public void setTask(TaskObject task) {
+	public void setTask(Task task) {
 		this.task = task;
 	}
 
@@ -99,16 +99,25 @@ public class UserObject {
     @JoinColumn(name = "project_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @With
-    private ProjectObject project;
+    private Project project;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @With
-    private TaskObject task;
+    private Task task;
 
-	public UserObject withProject(ProjectObject persistedProject) {
-		// TODO Auto-generated method stub
-		return null;
+	public User withProject(Project persistedProject) {
+		User user = new User();
+		user.setProject(persistedProject);
+		return user;
+		//return null;
+	}
+
+	public User withTask(Task persistedTask) {
+	User user = new User();
+	user.setTask(persistedTask);
+		return user;
+		//return null;
 	}
 }

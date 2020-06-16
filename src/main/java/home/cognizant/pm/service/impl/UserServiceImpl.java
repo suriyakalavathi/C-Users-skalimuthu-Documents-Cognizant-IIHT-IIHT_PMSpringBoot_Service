@@ -2,7 +2,7 @@ package home.cognizant.pm.service.impl;
 
 import home.cognizant.pm.api.exception.UserException;
 import home.cognizant.pm.service.api.UserService;
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.User;
 import home.cognizant.pm.service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public UserObject add(UserObject user) {    
+    public User add(User user) {    
         return userRepository.save(user);
     }
 
     @Override
-    public List<UserObject> edit(UserObject user) {     
-        Set<UserObject> editedUsers = getAll().stream().filter(user1 -> user1.getEmployeeId() == user.getEmployeeId())
+    public List<User> edit(User user) {     
+        Set<User> editedUsers = getAll().stream().filter(user1 -> user1.getEmployeeId() == user.getEmployeeId())
                 .map(user1 -> {
                     user1.setFirstName(user.getFirstName());
                     user1.setLastName(user.getLastName());
@@ -45,25 +45,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserObject get(long userId) {     
+    public User get(long userId) {     
         return userRepository.findById(userId).orElseThrow(() -> new UserException(String.format("User not found for UserID \"%s\"", userId)));
     }
 
     @Override
-    public Set<UserObject> getManagers(long projectId) {     
+    public Set<User> getManagers(long projectId) {     
         return userRepository.findUsersByProject_ProjectId(projectId).stream().filter(Optional::isPresent).map(Optional::get).filter(user -> user.getTask() == null).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<UserObject> getAllWithUniqueEmployeeId() {
-        Set<UserObject> users = userRepository.findUsersWithUniqueEmployeeId();      
+    public Set<User> getAllWithUniqueEmployeeId() {
+        Set<User> users = userRepository.findUsersWithUniqueEmployeeId();      
         return users;
     }
 
     @Override
-    public List<UserObject> getAll() {
-        List<UserObject> users = userRepository.findAll();
-        //log.debug("Get all users: {}", users);
+    public List<User> getAll() {
+        List<User> users = userRepository.findAll();
         return users;
     }
 }

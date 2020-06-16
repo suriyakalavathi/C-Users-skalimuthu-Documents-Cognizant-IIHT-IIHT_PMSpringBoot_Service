@@ -1,7 +1,7 @@
 package home.cognizant.pm.service.impl;
 
 import home.cognizant.pm.service.api.UserService;
-import home.cognizant.pm.service.entity.UserObject;
+import home.cognizant.pm.service.entity.User;
 import home.cognizant.pm.service.repository.ParentTaskRepository;
 import home.cognizant.pm.service.repository.ProjectRepository;
 import home.cognizant.pm.service.repository.TaskRepository;
@@ -41,8 +41,8 @@ public class UserServiceImplTest {
     @Autowired
     private UserService userService;
 
-    private static UserObject user;
-    private static List<UserObject> users;
+    private static User user;
+    private static List<User> users;
 
     @BeforeAll
     @DisplayName("Setup Before any test")
@@ -50,8 +50,8 @@ public class UserServiceImplTest {
         assertThat("userRepository is NOT injected", userRepository, is(notNullValue()));
         assertThat("userService is NOT injected", userService, is(notNullValue()));
 
-        user = new UserObject(1, 1, "Test", "User");
-        users = Arrays.asList(new UserObject[]{user});
+        user = new User(1, 1, "Test", "User");
+        users = Arrays.asList(new User[]{user});
     }
 
     @BeforeEach
