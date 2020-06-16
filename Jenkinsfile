@@ -1,9 +1,8 @@
-
 pipeline {
     agent {
         docker {
             image 'maven:3-alpine'
-            args '-v /Users/suriya/.m2:/root/.m2'
+            args '-v /Users/skalimuthu/.m2:/root/.m2'
         }
     }
     stages {
@@ -14,22 +13,22 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'Verification In Progress...'
             }
         }
         stage('Publish') {
             steps {
-                echo 'Publishing...'
+                echo 'Publish In Progress...'
             }
         }
         stage('Deployment') {
             steps {
-                echo 'Deploying...'
+                echo 'Deployment In Progress...'
             }
         }
         stage('Delivery') {
             steps {
-                echo 'Delivering...'
+                echo 'Delivery In Progress...'
             }
         }
     }
