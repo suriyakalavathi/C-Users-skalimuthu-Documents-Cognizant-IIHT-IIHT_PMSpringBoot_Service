@@ -12,19 +12,19 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+// Swagger UI @ http://localhost:8080/swagger-ui.html
+// Swagger Doc @ http://localhost:8080/v2/api-docs
+
 @Slf4j
 
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
-    // Swagger UI @ http://localhost:8080/swagger-ui.html
-    // Swagger Doc @ http://localhost:8080/v2/api-docs
-
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Project Manager REST API")
-                .description("Project Manager REST API")
-                .contact(new Contact("Test User", "www.cognizant.home", "suriyakalavathi@gmail.com"))
+        return new ApiInfoBuilder().title("REST API")
+                .description("REST API")
+                .contact(new Contact("Suriya Kalimuthu", "www.cognizant.projectmanager", "suriyakalavathi@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0-SNAPSHOT")

@@ -94,7 +94,7 @@ public class TaskRequest {
     @NotNull(message = "Project ID is required")
     private long projectId;
 
-    @NotEmpty(message = "Fill in Name")
+    @NotEmpty(message = "Enter Task Name")
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
