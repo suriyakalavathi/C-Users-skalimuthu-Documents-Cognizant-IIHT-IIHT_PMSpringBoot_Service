@@ -59,8 +59,8 @@ public class UserControllerTest {
         assertThat("userMapper is NOT injected", userMapper, is(notNullValue()));
         assertThat("userService is NOT injected", userService, is(notNullValue()));
 
-        user = new User(1, 1, "Demo", "User");
-        userResponse = new UserResponse(1, 1, "Demo", "User");
+        user = new User(1, 1, "Baby", "Cute");
+        userResponse = new UserResponse(1, 1, "Baby", "Cute");
         users = Stream.of(user).collect(Collectors.toSet());
         userResponses = Arrays.asList(new UserResponse[]{userResponse});
     }
@@ -89,7 +89,7 @@ public class UserControllerTest {
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
         assertThat("Expected Results", mvcResult.getResponse().getStatus(), is(200));
-        assertThat("Invalid UserResponse", mvcResult.getResponse().getContentAsString(), is("{\"userId\":1,\"employeeId\":1,\"firstName\":\"Test\",\"lastName\":\"User\"}"));
+        assertThat("Invalid UserResponse", mvcResult.getResponse().getContentAsString(), is("{\"userId\":1,\"employeeId\":1,\"firstName\":\"Baby\",\"lastName\":\"User\"}"));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class UserControllerTest {
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
         assertThat("Expected Results", mvcResult.getResponse().getStatus(), is(200));
-        assertThat("Invalid List<UserResponse>", mvcResult.getResponse().getContentAsString(), is("[{\"userId\":1,\"employeeId\":1,\"firstName\":\"Test\",\"lastName\":\"User\"}]"));
+        assertThat("Invalid List<UserResponse>", mvcResult.getResponse().getContentAsString(), is("[{\"userId\":1,\"employeeId\":1,\"firstName\":\"Baby\",\"lastName\":\"Cute\"}]"));
     }
 
     @Test
