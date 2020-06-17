@@ -39,7 +39,7 @@ public class ProjectController {
     @PostMapping("/projects/{managerId}")
     public ResponseEntity<UserResponse> add(@PathVariable long managerId, @Valid @RequestBody ProjectRequest projectRequest) {
         Project project = projectMapper.toProject(projectRequest);
-    //    project.setManagerId(managerId);
+        project.setManagerId(managerId);
         return new ResponseEntity(projectMapper.toProjectResponse(projectService.add(project)), HttpStatus.CREATED);
     }
 
